@@ -21,7 +21,11 @@
 
         for(var i=0;i<funcs.length;i++) {
             var func = funcs[i];
-            var result = func.func.call(AValidate, data[func.field], func.param);
+            var result = func.func.call(AValidate, {
+                value:data[func.field],
+                param:func.param,
+                data:data
+            });
             var field = func.field;
             var cond = func.cond;
             if(!result) {
@@ -43,38 +47,122 @@
         var funcs = AValidate._build(data, config, true);
 
         var PROMISE_TEMPLATE = [
-            'return new Promise(function(resolve, reject) {',
-            '    setTimeout(function() {',
-            '        var result = {{condition}};',
-            '        if(result) {',
-            '            resolve();',
-            '        }else {',
-            '            reject("error");',
-            '        }',
-            '    }, 1);',
-            '});'
+            'var value=opt.value,param=opt.param;',
+            'setTimeout(function() {',
+            '    var result = {{condition}};',
+            '    if(result) {',
+            '        resolve();',
+            '    }else {',
+            '        reject();',
+            '    }',
+            '}, 1);'
         ].join("\n");
 
         funcs.forEach(function(func) {
-            var promise = null;
-            if(func.func && func.func.__promise__) {
-                promise = func.func.call(AValidate, data[func.field], config[func.field][func.cond]);
+            var defer = Promise.defer();
+
+            defer._resolve = function(value) {
+                defer.resolve();
+            };
+            defer._reject = function(value) {
+                value = value || "error";
+                defer.reject([func.field, func.cond, value]);
+            };
+
+            if(func.func && AValidate._is(func.func, 'function') && func.func.__promise__) {
+                func.func.call(AValidate, {
+                    value:data[func.field],
+                    param:config[func.field][func.cond],
+                    data:data
+                }, defer._resolve, defer._reject);
             }else {
-                promise = new Function(
-                    'value',
-                    'param',
+                new Function(
+                    'opt',
+                    'resolve',
+                    'reject',
                     PROMISE_TEMPLATE.replace(
                         "{{condition}}",
                         "("+(func.cond in AValidate.rules ? "AValidate.rules." + func.cond : func.func.toString())+")(value, param)"
                     )
-                ).call(AValidate, data[func.field], config[func.field][func.cond]);
+                ).call(AValidate, {
+                    value:data[func.field],
+                    param:config[func.field][func.cond],
+                    data:data
+                }, defer._resolve, defer._reject);
             }
-            promise.__source__ = func;
-            promises.push(promise);
+
+            promises.push(defer.promise);
         });
 
-        return Promise.all(promises);
+        var buildPromises = Promise.whatever(promises, function(values) {
+            var data = {};
+            values.forEach(function(item) {
+                var field = item[0];
+                var cond = item[1];
+                var value = item[2];
+                if(!data[field]) {
+                    data[field] = {};
+                }
+                data[field][cond] = value;
+            });
+            return data;
+        });
+        return buildPromises;
     };
+
+    if(!("whatever" in window.Promise)) {
+        Promise.whatever = function(values, format) {
+            var defer = Promise.defer();
+            var len = values.length;
+            var success = [];
+            var error = [];
+
+            !format && (format = function(value) {
+                return value;
+            });
+
+            function done() {
+                if(error.length) {
+                    defer.reject(format(error));
+                }else {
+                    defer.resolve(success);
+                }
+            }
+
+            function resolve(value, i) {
+                success.push(value);
+                len--;
+
+                if(len == 0) {
+                    done();
+                }
+            }
+
+            function reject(message) {
+                error.push(message);
+                len--;
+
+                if(len == 0) {
+                    done();
+                }
+            }
+
+            values.forEach(function(item, i) {
+                if(!(item instanceof Promise)) {
+                    resolve(item, i);
+                    return;
+                }
+
+                item.then(function(value) {
+                    resolve(value, i);
+                }, function(message) {
+                    reject(message);
+                });
+            });
+
+            return defer.promise;
+        };
+    }
 
     AValidate._type = function(data) {
         var result = (typeof data).toLowerCase();
@@ -120,7 +208,7 @@
                         condition = value.toString() + '.test(value)';
                     };break;
                 };
-                return AValidate._is(value, 'function') ? value : new Function("value", "param", 'return ' + condition);
+                return AValidate._is(value, 'function') ? value : new Function("opt", 'return ' + condition);
             };
 
             func = build(type, key);
@@ -142,9 +230,12 @@
                 };break;
             };
             if(AValidate._is(value, 'function')) {
-                return value.__promise__ = true, value;
+                value.__promise__ = true;
+                return value;
             }else {
-                return new Function("value", "param", 'return ' + condition);
+                var builder = new Function("value", "param", 'return ' + condition);
+                builder.__promise__ = false;
+                return builder;
             }
         };
 

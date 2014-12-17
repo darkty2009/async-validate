@@ -9,22 +9,29 @@
 <body>
 </body>
 <script type="text/javascript">
-    AValidate.async({val:22222}, {
+    AValidate.async({val:"9999"}, {
         val:{
             required:true,
             length:5,
-            exist:function(data) {
-                return new Promise(function(resolve, reject) {
-                    setTimeout(function() {
-                        if(data * 1 > 20000) {
-                            resolve();
-                        }else if(data * 1 < 10000){
-                            reject("less");
-                        }else {
-                            reject("wrong");
-                        }
-                    }, 1);
-                });
+            exist:function(opt, resolve, reject) {
+                setTimeout(function() {
+                    if(opt.value * 1 > 20000) {
+                        resolve("UID IS RIGHT");
+                    }else if(opt.value * 1 < 10000){
+                        reject("less");
+                    }else {
+                        reject("wrong");
+                    }
+                }, 300);
+            },
+            type:function(opt, resolve, reject) {
+                setTimeout(function() {
+                    if(opt.value.match(/\d{5}/)) {
+                        resolve();
+                    }else {
+                        reject();
+                    }
+                }, 1);
             }
         }
     }).then(function(values) {
@@ -33,15 +40,15 @@
         console.log("faith", values);
     });
 
-    console.log(AValidate({val:"XL"}, {val:{include:["S", "M", "L", "XL"]}}));
-    console.log(AValidate({val:"XXL"}, {val:{include:["S", "M", "L", "XL"]}}));
-
-    console.log(AValidate({val:"XL"}, {val:{exclude:["S", "M", "L", "XL"]}}));
-    console.log(AValidate({val:"XXL"}, {val:{exclude:["S", "M", "L", "XL"]}}));
-
-    console.log(AValidate({val:"d@g.com"}, {val:{email:true}}));
-    console.log(AValidate({val:"111222qqwe@"}, {val:{email:true}}));
-    console.log(AValidate({val:"d@g.com"}, {val:{email:false}}));
-    console.log(AValidate({val:"111222qqwe@"}, {val:{email:false}}));
+//    console.log(AValidate({val:"XL"}, {val:{include:["S", "M", "L", "XL"]}}));
+//    console.log(AValidate({val:"XXL"}, {val:{include:["S", "M", "L", "XL"]}}));
+//
+//    console.log(AValidate({val:"XL"}, {val:{exclude:["S", "M", "L", "XL"]}}));
+//    console.log(AValidate({val:"XXL"}, {val:{exclude:["S", "M", "L", "XL"]}}));
+//
+//    console.log(AValidate({val:"d@g.com"}, {val:{email:true}}));
+//    console.log(AValidate({val:"111222qqwe@"}, {val:{email:true}}));
+//    console.log(AValidate({val:"d@g.com"}, {val:{email:false}}));
+//    console.log(AValidate({val:"111222qqwe@"}, {val:{email:false}}));
 </script>
 </html>

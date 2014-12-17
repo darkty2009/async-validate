@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b7566fb-1926-4de3-a44c-32dba901a60b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/baseline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sample.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/validate.async.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sample.html" afterPath="$PROJECT_DIR$/sample.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validate.async.js" afterPath="$PROJECT_DIR$/validate.async.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="async-validate.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +30,7 @@
       <file leaf-file-name="validate.async.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/validate.async.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="11" selection-start="3816" selection-end="3816" vertical-scroll-proportion="-6.3461537" vertical-offset="1635" max-vertical-offset="4800">
+            <state line="81" column="29" selection-start="2460" selection-end="2460" vertical-scroll-proportion="-12.961538" vertical-offset="1121" max-vertical-offset="7398">
               <folding />
             </state>
           </provider>
@@ -39,7 +39,16 @@
       <file leaf-file-name="sample.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sample.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="30" selection-start="362" selection-end="362" vertical-scroll-proportion="0.18233083" vertical-offset="68" max-vertical-offset="780">
+            <state line="11" column="26" selection-start="358" selection-end="358" vertical-scroll-proportion="0.07782101" vertical-offset="180" max-vertical-offset="1180">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="baseline.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/baseline.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="918" column="4" selection-start="31270" selection-end="31270" vertical-scroll-proportion="49.923077" vertical-offset="15068" max-vertical-offset="19350">
               <folding />
             </state>
           </provider>
@@ -155,7 +164,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -213,13 +222,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/baseline.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="21" selection-start="0" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19350">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="529">
@@ -230,16 +232,23 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/baseline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="918" column="4" selection-start="31270" selection-end="31270" vertical-scroll-proportion="49.923077" vertical-offset="15068" max-vertical-offset="19350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/validate.async.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="11" selection-start="3816" selection-end="3816" vertical-scroll-proportion="-6.3461537" vertical-offset="1635" max-vertical-offset="4800">
+        <state line="81" column="29" selection-start="2460" selection-end="2460" vertical-scroll-proportion="-12.961538" vertical-offset="1121" max-vertical-offset="7398">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="30" selection-start="362" selection-end="362" vertical-scroll-proportion="0.18233083" vertical-offset="68" max-vertical-offset="780">
+        <state line="11" column="26" selection-start="358" selection-end="358" vertical-scroll-proportion="0.07782101" vertical-offset="180" max-vertical-offset="1180">
           <folding />
         </state>
       </provider>
