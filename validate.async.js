@@ -202,10 +202,10 @@
                     case 'boolean':;
                     case 'number':;
                     case 'string':{
-                        condition = 'value == ' + value;
+                        condition = 'opt.value == ' + value;
                     };break;
                     case 'regexp':{
-                        condition = value.toString() + '.test(value)';
+                        condition = value.toString() + '.test(opt.value)';
                     };break;
                 };
                 return AValidate._is(value, 'function') ? value : new Function("opt", 'return ' + condition);
@@ -223,17 +223,17 @@
                 case 'boolean':;
                 case 'number':;
                 case 'string':{
-                    condition = 'value == ' + value;
+                    condition = 'opt.value == ' + value;
                 };break;
                 case 'regexp':{
-                    condition = value.toString() + '.test(value)';
+                    condition = value.toString() + '.test(opt.value)';
                 };break;
             };
             if(AValidate._is(value, 'function')) {
                 value.__promise__ = true;
                 return value;
             }else {
-                var builder = new Function("value", "param", 'return ' + condition);
+                var builder = new Function("opt", 'return ' + condition);
                 builder.__promise__ = false;
                 return builder;
             }
@@ -290,7 +290,8 @@
     };
 
     AValidate.rules = {
-        required:function(value, param) {
+        required:function(opt) {
+            var value = opt.value,param = opt.param;
             if(param) {
                 if(AValidate._is(value, 'array')) {
                     if(value.length) {
@@ -311,7 +312,8 @@
             }
             return true;
         },
-        length:function(value, param) {
+        length:function(opt) {
+            var value = opt.value,param = opt.param;
             if(typeof param == 'undefined') {
                 return true;
             }
@@ -330,7 +332,8 @@
                 return data.length >= min && data.length <= max;
             }
         },
-        number:function(value, param) {
+        number:function(opt) {
+            var value = opt.value,param = opt.param;
             if(!AValidate._is(value * 1, 'number'))
                 return false;
 
@@ -372,7 +375,8 @@
             }
 
         },
-        include:function(value, param) {
+        include:function(opt) {
+            var value = opt.value,param = opt.param;
             if(!AValidate._is(param, 'array'))
                 return false;
 
@@ -381,7 +385,8 @@
             }
             return false;
         },
-        exclude:function(value, param) {
+        exclude:function(opt) {
+            var value = opt.value,param = opt.param;
             if(!AValidate._is(param, 'array'))
                 return false;
 
@@ -390,7 +395,8 @@
             }
             return false;
         },
-        email:function(value, param) {
+        email:function(opt) {
+            var value = opt.value,param = opt.param;
             if(typeof param == 'undefined' || !param) {
                 return true;
             }
