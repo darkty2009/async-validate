@@ -200,9 +200,11 @@
                 var condition = '';
                 switch(type) {
                     case 'boolean':;
-                    case 'number':;
-                    case 'string':{
+                    case 'number':{
                         condition = 'opt.value == ' + value;
+                    };break;
+                    case 'string':{
+                        condition = 'opt.value == "' + value + '"';
                     };break;
                     case 'regexp':{
                         condition = value.toString() + '.test(opt.value)';
@@ -405,6 +407,29 @@
 
             var pattern = /^[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i;
             return pattern.test(value);
+        },
+        char:function(opt) {
+            opt = opt || {};
+            // number, english, symbol, chinese
+            var rules = {
+                "number":"0-9",
+                "symbol":"`~!@#￥%……&*()_-=+[]|;:,.",
+                "english":"a-zA-Z",
+                "chinese":"\u0391-\uFFE5"
+            };
+
+            var check_char = "";
+            for(var key in opt) {
+                if(opt[key] && key in rules) {
+                    check_char += rules[key];
+                }
+            }
+            if(check_char) {
+                var check_reg = new RegExp("^["+check_char+"]+$", "g");
+                return !!check_reg.test(opt.value);
+            }else {
+                return true;
+            }
         }
     };
 

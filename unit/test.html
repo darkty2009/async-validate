@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unit Test</title>
+    <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.16.0.css">
+    <script src="//code.jquery.com/qunit/qunit-1.16.0.js"></script>
+    <script src="../validate.async.js"></script>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+</body>
+<script type="text/javascript">
+    var A = AValidate;
+    QUnit.test("Sync", function(assert) {
+        assert.deepEqual(A.sync({val:true}, {val:true}), null, 'shortcut boolean');
+        assert.deepEqual(A.sync({val:1}, {val:1}), null, 'shortcut number');
+        assert.deepEqual(A.sync({val:"a"}, {val:"a"}), null, 'shortcut string');
+        assert.deepEqual(A.sync({val:"abc"}, {val:/abc/}), null, 'shortcut regexp');
+    });
+</script>
+</html>

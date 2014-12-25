@@ -83,6 +83,24 @@ AValidate.async({val:12001}, {
 ### email
 参数: true | false
 验证当前值是否为email格式
+### char
+参数: [object]
+```javascript
+{
+    'number':true | false,
+    'symbol':true | false,
+    'chinese':true | false,
+    'english':true | false
+}
+```
+验证当前值是否满足字符类型要求
+参数包含四个属性(默认值均为false):
+
+* number    数字
+* symbol    特殊符号    注:`~!@#￥%……&*()_-=+[]|;:,.
+* chinese   中文
+* english   英文
+
 
 ## 自定义同步验证
 ```javascript
