@@ -186,6 +186,10 @@
         return AValidate._type(data) === type.toLowerCase();
     };
 
+    AValidate._empty = function(data) {
+        return (AValidate._is(data, 'number') && isNaN(data)) || (data === null) || (data == undefined);
+    };
+
     AValidate._toFunction = function(key, cond) {
         var type = AValidate._type(key);
         if(type == 'promise') {
@@ -315,26 +319,41 @@
             return true;
         },
         length:function(opt) {
-            var value = opt.value,param = opt.param;
-            if(typeof param == 'undefined') {
+            if(AValidate._empty(opt)) {
                 return true;
             }
-            var is = param.is;
-            var min = param.min;
-            var max = param.max;
+            var value = opt.value,param = opt.param;
+            var is = param ? param.is : undefined;
+            var min = param ? param.min : undefined;
+            var max = param ? param.max : undefined;
 
-            if(!AValidate._is(param, 'object')) {
+            if(!AValidate._is(param, 'object') && !AValidate._empty(param)) {
                 is = param.toString();
             }
 
-            var data = value.toString();
-            if(is) {
+            var data = value + "";
+            if(!AValidate._empty(is)) {
                 return data.length == is;
             }else {
-                return data.length >= min && data.length <= max;
+                if(AValidate._is(min, 'number') && AValidate._is(max, 'number')) {
+                    return data.length >= min && data.length <= max;
+                }
+                else if(AValidate._is(min, 'number') && AValidate._is(max, 'undefined')) {
+                    return data.length >= min;
+                }
+                else if(AValidate._is(min, 'undefined') && AValidate._is(max, 'number')) {
+                    return data.length <= max;
+                }
+                else {
+                    return true;
+                }
             }
         },
         number:function(opt) {
+            if(AValidate._empty(opt)) {
+                return true;
+            }
+
             var value = opt.value,param = opt.param;
             if(!AValidate._is(value * 1, 'number'))
                 return false;
