@@ -4,7 +4,7 @@ Async-Avalidte是一个支持同步与异步模式的验证框架，
 并返回给开发者一个经过组织的结果
 
 ##构建状态
-[![Build Status](https://travis-ci.org/darkty2009/async-validate.svg)](https://travis-ci.org/darkty2009/async-validate)
+[![Build Status](https://travis-ci.org/darkty2009/async-validate.svg)](https://travis-ci.org/darkty2009/async-validate) [![NPM version][npm-version-image]][npm-url] [![MIT License][license-image]][license-url]
 
 ##快速起步
 ```javascript
