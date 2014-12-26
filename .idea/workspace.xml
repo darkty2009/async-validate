@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b7566fb-1926-4de3-a44c-32dba901a60b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit/test.html" afterPath="$PROJECT_DIR$/unit/test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validate.async.js" afterPath="$PROJECT_DIR$/validate.async.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="async-validate.iws" />
@@ -46,15 +44,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="0.28846154" vertical-offset="0" max-vertical-offset="2355">
+            <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="-1.6981132" vertical-offset="0" max-vertical-offset="2355">
               <folding />
             </state>
           </provider>
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="5" selection-start="17" selection-end="17" vertical-scroll-proportion="0.04411765" vertical-offset="0" max-vertical-offset="340">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -94,6 +101,7 @@
         <option value="$PROJECT_DIR$/validate.async.js" />
         <option value="$PROJECT_DIR$/unit/test.html" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -321,12 +329,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="0.28846154" vertical-offset="0" max-vertical-offset="2355">
+        <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="-1.6981132" vertical-offset="0" max-vertical-offset="2355">
           <folding />
         </state>
       </provider>
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="5" selection-start="17" selection-end="17" vertical-scroll-proportion="0.04411765" vertical-offset="0" max-vertical-offset="340">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
