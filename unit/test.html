@@ -121,6 +121,16 @@
             if(!AValidate._is(value, 'string'))
                 assert.deepEqual(A.sync({val:"X"}, {val:{exclude:value}}), null, 'use rule: exclude param with ' + value);
         });
+
+        assert.deepEqual(A.sync({val:"d@g.com"}, {val:{email:true}}), null, 'use rule: email');
+        assert.deepEqual(A.sync({val:"d@g.com"}, {val:{email:false}}), null, 'use rule: email');
+        errors.forEach(function(value) {
+            assert.deepEqual(A.sync({val:value}, {val:{email:true}}), {val:['email']}, 'use rule: email with ' + value);
+        });
+        var email = ["d@.com", "@@g.com", "@g.com", ".@g.com", "!@g.com", "()@g.com", "dgcom", "d@.g.com", "d@g..com"];
+        email.forEach(function(value) {
+            assert.deepEqual(A.sync({val:value}, {val:{email:true}}), {val:['email']}, 'use rule: email with ' + value);
+        });
     });
 </script>
 </html>

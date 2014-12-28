@@ -434,7 +434,7 @@
             if(!AValidate._is(value, "string"))
                 return false;
 
-            var pattern = /^[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i;
+            var pattern = /^[a-z0-9\u007F-\uffff_]+(?:\.[a-z0-9\u007F-\uffff_]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i;
             return pattern.test(value);
         },
         char:function(opt) {
