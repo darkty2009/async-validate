@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1b7566fb-1926-4de3-a44c-32dba901a60b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit/test.html" afterPath="$PROJECT_DIR$/unit/test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validate.async.js" afterPath="$PROJECT_DIR$/validate.async.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="async-validate.iws" />
@@ -29,16 +30,16 @@
       <file leaf-file-name="validate.async.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/validate.async.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="355" column="0" selection-start="10992" selection-end="10992" vertical-scroll-proportion="0.0" vertical-offset="4377" max-vertical-offset="6915">
+            <state line="419" column="13" selection-start="13012" selection-end="13012" vertical-scroll-proportion="0.0" vertical-offset="5937" max-vertical-offset="7065">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="test.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/unit/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="17" selection-start="128" selection-end="128" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="1530">
+            <state line="106" column="33" selection-start="6232" selection-end="6232" vertical-scroll-proportion="0.7976879" vertical-offset="1176" max-vertical-offset="1725">
               <folding />
             </state>
           </provider>
@@ -46,20 +47,20 @@
       </file>
       <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="-1.6981132" vertical-offset="0" max-vertical-offset="2355">
-              <folding />
-            </state>
-          </provider>
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2355">
+              <folding />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="5" selection-start="17" selection-end="17" vertical-scroll-proportion="0.04411765" vertical-offset="0" max-vertical-offset="340">
+            <state line="2" column="0" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="120">
               <folding />
             </state>
           </provider>
@@ -68,7 +69,7 @@
       <file leaf-file-name="sample.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sample.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="46" selection-start="2084" selection-end="2084" vertical-scroll-proportion="-16.708334" vertical-offset="424" max-vertical-offset="945">
+            <state line="55" column="46" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="945">
               <folding />
             </state>
           </provider>
@@ -98,10 +99,10 @@
       <list>
         <option value="$PROJECT_DIR$/baseline.js" />
         <option value="$PROJECT_DIR$/sample.html" />
-        <option value="$PROJECT_DIR$/validate.async.js" />
-        <option value="$PROJECT_DIR$/unit/test.html" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/validate.async.js" />
+        <option value="$PROJECT_DIR$/unit/test.html" />
       </list>
     </option>
   </component>
@@ -210,12 +211,12 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270548" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32593855" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25755286" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2688822" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -249,19 +250,109 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/validate.async.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="355" column="0" selection-start="10992" selection-end="10992" vertical-scroll-proportion="0.0" vertical-offset="5127" max-vertical-offset="6915">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unit/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="123" selection-start="5495" selection-end="5495" vertical-scroll-proportion="0.0" vertical-offset="1425" max-vertical-offset="1575">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="120">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="46" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/baseline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="918" column="4" selection-start="31270" selection-end="31270" vertical-scroll-proportion="0.0" vertical-offset="15068" max-vertical-offset="19350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validate.async.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="355" column="0" selection-start="10992" selection-end="10992" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6915">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/unit/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="1530">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="120">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="46" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/baseline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="918" column="4" selection-start="31270" selection-end="31270" vertical-scroll-proportion="0.0" vertical-offset="15068" max-vertical-offset="19350">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/validate.async.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="207" column="71" selection-start="6180" selection-end="6180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6255">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="130" column="64" selection-start="2396" selection-end="2396" vertical-scroll-proportion="0.0" vertical-offset="713" max-vertical-offset="2040">
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sample.html">
@@ -299,6 +390,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="2355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sample.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="46" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.0" vertical-offset="424" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/baseline.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="918" column="4" selection-start="31270" selection-end="31270" vertical-scroll-proportion="0.0" vertical-offset="15068" max-vertical-offset="19350">
@@ -306,40 +414,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sample.html">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="46" selection-start="2084" selection-end="2084" vertical-scroll-proportion="-16.708334" vertical-offset="424" max-vertical-offset="945">
+        <state line="2" column="0" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="120">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/validate.async.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="355" column="0" selection-start="10992" selection-end="10992" vertical-scroll-proportion="0.0" vertical-offset="4377" max-vertical-offset="6915">
+        <state line="419" column="13" selection-start="13012" selection-end="13012" vertical-scroll-proportion="0.0" vertical-offset="5937" max-vertical-offset="7065">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/unit/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="17" selection-start="128" selection-end="128" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="1530">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="119" selection-start="226" selection-end="226" vertical-scroll-proportion="-1.6981132" vertical-offset="0" max-vertical-offset="2355">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="5" selection-start="17" selection-end="17" vertical-scroll-proportion="0.04411765" vertical-offset="0" max-vertical-offset="340">
+        <state line="106" column="33" selection-start="6232" selection-end="6232" vertical-scroll-proportion="0.7976879" vertical-offset="1176" max-vertical-offset="1725">
           <folding />
         </state>
       </provider>

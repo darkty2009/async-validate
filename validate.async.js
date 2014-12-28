@@ -355,8 +355,12 @@
             }
 
             var value = opt.value,param = opt.param;
-            if(!AValidate._is(value * 1, 'number'))
+            if(!AValidate._is(value, 'number') && !AValidate._is(value, 'string'))
                 return false;
+
+            if(AValidate._is(param, 'number') && !isNaN(param)) {
+                param = {'==': param};
+            }
 
             var operator = {
                 '>':function(num1, num2) {
@@ -398,6 +402,9 @@
         },
         include:function(opt) {
             var value = opt.value,param = opt.param;
+            if(AValidate._is(param, 'string')) {
+                param = param.split("");
+            }
             if(!AValidate._is(param, 'array'))
                 return false;
 
@@ -408,6 +415,9 @@
         },
         exclude:function(opt) {
             var value = opt.value,param = opt.param;
+            if(AValidate._is(param, 'string')) {
+                param = param.split("");
+            }
             if(!AValidate._is(param, 'array'))
                 return false;
 

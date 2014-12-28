@@ -91,7 +91,20 @@
         });
         assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{is:5, min:7, max:10}}}), null, 'use rule: length is override min and max');
 
+        assert.deepEqual(A.sync({val:5000}, {val:{number:5000}}), null, 'use rule: number');
+        errors.forEach(function(value) {
+            assert.deepEqual(A.sync({val:value}, {val:{number:5000}}), {val:['number']}, 'use rule: number with ' + value);
+            if(value != 0 && !isNaN(value)) {
+                assert.deepEqual(A.sync({val:5000}, {val:{number:value}}), null, 'use rule: number param with ' + value);
+            }
+        });
 
+        assert.deepEqual(A.sync({val:5000}, {val:{number:{'<=':10000}}}), null, 'use rule: number lessEqual');
+        assert.deepEqual(A.sync({val:5000}, {val:{number:{'>=':1000}}}), null, 'use rule: number moreEqual');
+        assert.deepEqual(A.sync({val:5000}, {val:{number:{'<=':10000, '>=':1000}}}), null, 'use rule: number lessEqual and moreEqual');
+        assert.deepEqual(A.sync({val:5000}, {val:{number:{'<=':1000, '>=':5000, 'or':true}}}), null, 'use rule: number lessEqual and moreEqual ,or');
+
+//        assert.deepEqual(A.sync({}))
     });
 </script>
 </html>
