@@ -8,7 +8,7 @@ Async-Avalidte是一个支持同步与异步模式的验证框架，
 [build-url]: https://travis-ci.org/darkty2009/async-validate
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: https://github.com/darkty2009/async-validate/blob/master/LICENSE
-[![Build Status](build-image)](build-url) [![MIT License][license-image]][license-url]
+[![Build Status][build-image]][build-url] [![MIT License][license-image]][license-url]
 
 ##快速起步
 ```javascript
