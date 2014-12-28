@@ -406,7 +406,7 @@
                 param = param.split("");
             }
             if(!AValidate._is(param, 'array'))
-                return false;
+                return true;
 
             if(param.indexOf(value) >= 0) {
                 return true;
@@ -419,7 +419,7 @@
                 param = param.split("");
             }
             if(!AValidate._is(param, 'array'))
-                return false;
+                return true;
 
             if(param.indexOf(value) < 0) {
                 return true;
