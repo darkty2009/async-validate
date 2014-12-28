@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1b7566fb-1926-4de3-a44c-32dba901a60b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/unit/test.html" afterPath="$PROJECT_DIR$/unit/test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validate.async.js" afterPath="$PROJECT_DIR$/validate.async.js" />
     </list>
     <ignored path="async-validate.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +28,7 @@
       <file leaf-file-name="validate.async.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/validate.async.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="422" column="0" selection-start="13088" selection-end="13088" vertical-scroll-proportion="0.0" vertical-offset="6027" max-vertical-offset="7065">
+            <state line="422" column="0" selection-start="13088" selection-end="13088" vertical-scroll-proportion="0.0" vertical-offset="6132" max-vertical-offset="7065">
               <folding />
             </state>
           </provider>
@@ -38,7 +37,7 @@
       <file leaf-file-name="test.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/unit/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="16" selection-start="6660" selection-end="6660" vertical-scroll-proportion="0.58966565" vertical-offset="1471" max-vertical-offset="1815">
+            <state line="119" column="92" selection-start="7372" selection-end="7372" vertical-scroll-proportion="0.72644377" vertical-offset="1546" max-vertical-offset="1965">
               <folding />
             </state>
           </provider>
@@ -422,14 +421,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/validate.async.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="422" column="0" selection-start="13088" selection-end="13088" vertical-scroll-proportion="0.0" vertical-offset="6027" max-vertical-offset="7065">
+        <state line="422" column="0" selection-start="13088" selection-end="13088" vertical-scroll-proportion="0.0" vertical-offset="6132" max-vertical-offset="7065">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/unit/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="16" selection-start="6660" selection-end="6660" vertical-scroll-proportion="0.58966565" vertical-offset="1471" max-vertical-offset="1815">
+        <state line="119" column="92" selection-start="7372" selection-end="7372" vertical-scroll-proportion="0.72644377" vertical-offset="1546" max-vertical-offset="1965">
           <folding />
         </state>
       </provider>

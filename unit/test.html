@@ -105,11 +105,21 @@
         assert.deepEqual(A.sync({val:5000}, {val:{number:{'<=':1000, '>=':5000, 'or':true}}}), null, 'use rule: number lessEqual and moreEqual ,or');
 
         assert.deepEqual(A.sync({val:"X"}, {val:{include:["X", "S", "M", "L"]}}), null, 'use rule: include');
+        assert.deepEqual(A.sync({val:"E"}, {val:{include:["X", "S", "M", "L"]}}), {val:['include']}, 'use rule: include');
         assert.deepEqual(A.sync({val:"X"}, {val:{include:"XSML"}}), null, 'use rule: include string');
         errors.forEach(function(value) {
             assert.deepEqual(A.sync({val:value}, {val:{include:["X", "S", "M", "L"]}}), {val:['include']}, 'use rule: include with ' + value);
             if(!AValidate._is(value, 'string'))
                 assert.deepEqual(A.sync({val:"X"}, {val:{include:value}}), null, 'use rule: include param with ' + value);
+        });
+
+        assert.deepEqual(A.sync({val:"E"}, {val:{exclude:["X", "S", "M", "L"]}}), null, 'use rule: exclude');
+        assert.deepEqual(A.sync({val:"X"}, {val:{exclude:["X", "S", "M", "L"]}}), {val:['exclude']}, 'use rule: exclude');
+        assert.deepEqual(A.sync({val:"E"}, {val:{exclude:"XSML"}}), null, 'use rule: exclude string');
+        errors.forEach(function(value) {
+            assert.deepEqual(A.sync({val:value}, {val:{exclude:["X", "S", "M", "L"]}}), null, 'use rule: exclude with ' + value);
+            if(!AValidate._is(value, 'string'))
+                assert.deepEqual(A.sync({val:"X"}, {val:{exclude:value}}), null, 'use rule: exclude param with ' + value);
         });
     });
 </script>
