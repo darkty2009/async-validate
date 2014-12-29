@@ -6,7 +6,7 @@
         module.exports = factory();
     }
     else {
-        root.returnExports = factory();
+        root.AValidate = factory();
     }
 })(this, function() {
     "use strict";
@@ -462,5 +462,5 @@
         }
     };
 
-    return window.AValidate = AValidate;
+    return AValidate;
 });
