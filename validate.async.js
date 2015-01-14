@@ -33,9 +33,9 @@
                     errors = {};
                 }
                 if(!errors[field]) {
-                    errors[field] = [];
+                    errors[field] = {};
                 }
-                errors[field].push(cond);
+                errors[field][cond] = 'error';
             }
         }
 
@@ -47,7 +47,6 @@
         var funcs = AValidate._build(data, config, true);
 
         var PROMISE_TEMPLATE = [
-            'var value=opt.value,param=opt.param;',
             'setTimeout(function() {',
             '    var result = {{condition}};',
             '    if(result) {',
@@ -82,13 +81,13 @@
                     'reject',
                     PROMISE_TEMPLATE.replace(
                         "{{condition}}",
-                        "("+(func.cond in AValidate.rules ? "AValidate.rules." + func.cond : func.func.toString())+")(value, param)"
+                        "("+(func.cond in AValidate.rules ? "AValidate.rules." + func.cond : func.func.toString())+")(opt)"
                     )
                 ).call(AValidate, {
-                    value:data[func.field],
-                    param:config[func.field][func.cond],
-                    data:data
-                }, defer._resolve, defer._reject);
+                        value:data[func.field],
+                        param:config[func.field][func.cond],
+                        data:data
+                    }, defer._resolve, defer._reject);
             }
 
             promises.push(defer.promise);
