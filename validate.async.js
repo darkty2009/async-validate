@@ -68,29 +68,33 @@
                 defer.reject([func.field, func.cond, value]);
             };
 
-            if(func.func && AValidate._is(func.func, 'function') && func.func.__promise__) {
-                func.func.call(AValidate, {
-                    value:data[func.field],
-                    param:config[func.field][func.cond],
-                    data:data
-                }, defer._resolve, defer._reject);
-            }else {
-                new Function(
-                    'opt',
-                    'resolve',
-                    'reject',
-                    PROMISE_TEMPLATE.replace(
-                        "{{condition}}",
-                        "("+(func.cond in AValidate.rules ? "AValidate.rules." + func.cond : func.func.toString())+")(opt)"
-                    )
-                ).call(AValidate, {
+            try {
+                if(func.func && AValidate._is(func.func, 'function') && func.func.__promise__) {
+                    func.func.call(AValidate, {
                         value:data[func.field],
                         param:config[func.field][func.cond],
                         data:data
                     }, defer._resolve, defer._reject);
-            }
+                }else {
+                    new Function(
+                        'opt',
+                        'resolve',
+                        'reject',
+                        PROMISE_TEMPLATE.replace(
+                            "{{condition}}",
+                            "("+(func.cond in AValidate.rules ? "AValidate.rules." + func.cond : func.func.toString())+")(opt)"
+                        )
+                    ).call(AValidate, {
+                            value:data[func.field],
+                            param:config[func.field][func.cond],
+                            data:data
+                        }, defer._resolve, defer._reject);
+                }
 
-            promises.push(defer.promise);
+                promises.push(defer.promise);
+            }catch(err) {
+                console.log && console.log(func.field, err);
+            }
         });
 
         var buildPromises = Promise.whatever(promises, function(values) {
