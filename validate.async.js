@@ -151,7 +151,7 @@
             }
 
             values.forEach(function(item, i) {
-                if(!(item instanceof Promise)) {
+                if(!AValidate._is(item, 'promise')) {
                     resolve(item, i);
                     return;
                 }
