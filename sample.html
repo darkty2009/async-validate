@@ -9,11 +9,13 @@
 <body>
 </body>
 <script type="text/javascript">
-    AValidate.async({val:"9999"}, {
+    AValidate.async({
+        val:"12345",
+        test:""
+    }, {
         val:{
             required:true,
             length:5,
-            custom:9999,
             exist:function(opt, resolve, reject) {
                 setTimeout(function() {
                     if(opt.value * 1 > 20000) {
@@ -34,6 +36,9 @@
                     }
                 }, 1);
             }
+        },
+        test:{
+            required:true
         }
     }).then(function(values) {
         console.log("success", values);
