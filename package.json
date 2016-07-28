@@ -1,6 +1,6 @@
 {
-  "name": "validate-async",
-  "version": "0.9.0",
+  "name": "async-validate",
+  "version": "1.0.0",
   "description": "transform all validator to async or promise",
   "main": "validate.async.js",
   "repository": {
@@ -19,6 +19,9 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/darkty2009/async-validate/issues"
+  },
+  "dependencies":{
+    "baseline.js":"latest"
   },
   "homepage": "https://github.com/darkty2009/async-validate"
 }

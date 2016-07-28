@@ -1,2 +1,3 @@
 unit/qunit*
 .idea
+.idea/*
