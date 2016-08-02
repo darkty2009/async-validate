@@ -20,6 +20,15 @@
   "bugs": {
     "url": "https://github.com/darkty2009/async-validate/issues"
   },
+  "scripts":{
+    "test":"mocha"
+  },
+  "devDependencies":{
+    "mocha":"^2.1.0"
+  },
+  "directories":{
+    "test":"test"
+  },
   "homepage": "https://github.com/darkty2009/async-validate"
 }
 

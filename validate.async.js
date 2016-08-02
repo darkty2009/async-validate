@@ -35,7 +35,6 @@
 
     if(!("whatever" in window.Promise)) {
         Promise.whatever = function(values, format) {
-            debugger;
             var defer = Promise.defer();
             var len = values.length;
             var success = [];
@@ -192,6 +191,11 @@
 
     AValidate._type = function(data) {
         var result = (typeof data).toLowerCase();
+
+        // Browser implement the Native Promise
+        if(data instanceof Promise) {
+            return 'promise';
+        }
         if(result == 'function') {
             if(typeof result.then == 'function') {
                 return 'promise';

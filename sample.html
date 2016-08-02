@@ -40,9 +40,9 @@
         }
     }).then(function(values) {
         console.log("success", values);
-    });
+    }).catch(function() {
 
-    debugger;
+    });
 
     console.log("XL:INCLUDE", AValidate({val:"XL"}, {val:{include:["S", "M", "L", "XL"]}}));
     console.log("XXL:INCLUDE", AValidate({val:"XXL"}, {val:{include:["S", "M", "L", "XL"]}}));

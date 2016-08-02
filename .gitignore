@@ -2,3 +2,4 @@ unit/qunit*
 .idea
 .idea/*
 *.log
+node_modules
