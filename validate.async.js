@@ -287,7 +287,7 @@
     };
 
     AValidate._empty = function(data) {
-        return (AValidate._is(data, 'number') && (isNaN(data) && !isFinite(data))) || (data === null) || (data == undefined);
+        return (AValidate._is(data, 'number') && (isNaN(data) && !isFinite(data))) || (data === null) || (data == undefined) || (data.toString().length == 0);
     };
 
     AValidate._buildCondition = function(type, value) {
@@ -398,22 +398,16 @@
         required:function(opt) {
             var value = opt.value,param = opt.param;
             if(param) {
-                if(AValidate._is(value, 'array')) {
-                    if(value.length) {
-                        return false;
-                    }
-                }
-                if(AValidate._is(value, 'string')) {
-                    if(value.trim() == '') {
-                        return false;
-                    }
-                }
                 if(AValidate._is(value, 'object')) {
                     for(var key in value) {
-                        return true;
+                        if(value.hasOwnProperty(key))
+                            return true;
                     }
+                    return false;
                 }
-                return !!value;
+                else {
+                    return !AValidate._empty(value);
+                }
             }
             return true;
         },
