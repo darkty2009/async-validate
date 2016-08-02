@@ -1,4 +1,5 @@
 var Validate = require('../validate.async.js');
+var common = require('./common.js');
 
 var a = require('assert').deepEqual;
 var d = describe;
@@ -38,6 +39,21 @@ d('#sync direct equal', function() {
         it('equal someone empty', function() {
             // JSON.stringify convert "NaN, undefined" etc to "null"
             a(null, Validate({val:[1,2,null, null]}, {val:[1,2,null, null]}));
+        });
+    });
+
+    d('#regexp', function() {
+        it('regexp char', function() {
+            a(null, Validate({val:"abc"}, {val:/abc/}));
+        });
+        it('regexp number', function() {
+            a(null, Validate({val:9999}, {val:/\d{4}/}));
+        });
+
+        common.empty.forEach(function(value) {
+            it('regex ' + value, function() {
+                a({val:{error:'error'}}, Validate({val:value}, {val:/abc/}));
+            });
         });
     });
 });

@@ -89,7 +89,6 @@
 
     // object equal
     var eq = function(a, b, aStack, bStack) {
-        console.log(a, b);
         if (a === b)
             return a !== 0 || 1 / a == 1 / b;
         if (a == null || b == null)
