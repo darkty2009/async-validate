@@ -20,12 +20,6 @@
   "bugs": {
     "url": "https://github.com/darkty2009/async-validate/issues"
   },
-  "devDependencies":{
-    "baseline.js":"latest",
-    "qunit":"latest"
-  },
-  "dependencies":{
-  },
   "homepage": "https://github.com/darkty2009/async-validate"
 }
 

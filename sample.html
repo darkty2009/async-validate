@@ -2,14 +2,12 @@
 <html>
 <head>
     <title></title>
-    <script type="text/javascript" src="baseline.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="validate.async.js"></script>
 </head>
 <body>
 </body>
 <script type="text/javascript">
-    AValidate.async({
+    var av = AValidate.async({
         val:"12345",
         test:""
     }, {
@@ -42,9 +40,9 @@
         }
     }).then(function(values) {
         console.log("success", values);
-    }, function(values) {
-        console.log("faith", values);
     });
+
+    debugger;
 
     console.log("XL:INCLUDE", AValidate({val:"XL"}, {val:{include:["S", "M", "L", "XL"]}}));
     console.log("XXL:INCLUDE", AValidate({val:"XXL"}, {val:{include:["S", "M", "L", "XL"]}}));

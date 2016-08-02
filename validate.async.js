@@ -11,6 +11,83 @@
 })(this, function() {
     "use strict";
 
+    // polyfill
+    if(!("defer" in window.Promise)) {
+        Promise.defer = function() {
+            return function() {
+                this.resolve = null;
+                this.reject = null;
+
+                var _this = this;
+                this.promise = new Promise(function(resolve, reject) {
+                    _this.resolve = resolve;
+                    _this.reject = reject;
+                });
+
+                this.catch = function(e) {
+                    return _this.promise.catch(e);
+                };
+
+                return this;
+            };
+        };
+    }
+
+    if(!("whatever" in window.Promise)) {
+        Promise.whatever = function(values, format) {
+            debugger;
+            var defer = Promise.defer();
+            var len = values.length;
+            var success = [];
+            var error = [];
+
+            !format && (format = function(value) {
+                return value;
+            });
+
+            function done() {
+                if(error.length) {
+                    defer.reject(format(error));
+                }else {
+                    defer.resolve(success);
+                }
+            }
+
+            function resolve(value, i) {
+                success.push(value);
+                len--;
+
+                if(len == 0) {
+                    done();
+                }
+            }
+
+            function reject(message) {
+                error.push(message);
+                len--;
+
+                if(len == 0) {
+                    done();
+                }
+            }
+
+            values.forEach(function(item, i) {
+                if(!AValidate._is(item, 'promise')) {
+                    resolve(item, i);
+                    return;
+                }
+
+                item.then(function(value) {
+                    resolve(value, i);
+                }, function(message) {
+                    reject(message);
+                });
+            });
+
+            return defer.promise;
+        };
+    }
+
     var AValidate = function(data, config, extra) {
         return AValidate.sync(data, config, extra);
     };
@@ -112,60 +189,6 @@
         });
         return buildPromises;
     };
-
-    if(!("whatever" in window.Promise)) {
-        Promise.whatever = function(values, format) {
-            var defer = Promise.defer();
-            var len = values.length;
-            var success = [];
-            var error = [];
-
-            !format && (format = function(value) {
-                return value;
-            });
-
-            function done() {
-                if(error.length) {
-                    defer.reject(format(error));
-                }else {
-                    defer.resolve(success);
-                }
-            }
-
-            function resolve(value, i) {
-                success.push(value);
-                len--;
-
-                if(len == 0) {
-                    done();
-                }
-            }
-
-            function reject(message) {
-                error.push(message);
-                len--;
-
-                if(len == 0) {
-                    done();
-                }
-            }
-
-            values.forEach(function(item, i) {
-                if(!AValidate._is(item, 'promise')) {
-                    resolve(item, i);
-                    return;
-                }
-
-                item.then(function(value) {
-                    resolve(value, i);
-                }, function(message) {
-                    reject(message);
-                });
-            });
-
-            return defer.promise;
-        };
-    }
 
     AValidate._type = function(data) {
         var result = (typeof data).toLowerCase();
