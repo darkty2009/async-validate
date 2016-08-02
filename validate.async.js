@@ -12,7 +12,7 @@
     "use strict";
 
     // polyfill
-    if(!("defer" in window.Promise)) {
+    if(!("defer" in root.Promise)) {
         Promise.defer = function() {
             return function() {
                 this.resolve = null;
@@ -33,7 +33,7 @@
         };
     }
 
-    if(!("whatever" in window.Promise)) {
+    if(!("whatever" in root.Promise)) {
         Promise.whatever = function(values, format) {
             var defer = Promise.defer();
             var len = values.length;
@@ -87,9 +87,77 @@
         };
     }
 
+    // object equal
+    var eq = function(a, b, aStack, bStack) {
+        console.log(a, b);
+        if (a === b)
+            return a !== 0 || 1 / a == 1 / b;
+        if (a == null || b == null)
+            return a === b;
+        var className = Object.prototype.toString.call(a);
+        if (className != Object.prototype.toString.call(b))
+            return false;
+
+        switch (className) {
+            case '[object String]':
+                return a == String(b);
+            case '[object Number]':
+                return a != +a ? b != +b : (a == 0 ? 1 / a == 1 / b : a == +b);
+            case '[object Date]':
+            case '[object Boolean]':
+                return +a == +b;
+            case '[object RegExp]':
+                return a.source == b.source && a.global == b.global && a.multiline == b.multiline && a.ignoreCase == b.ignoreCase;
+        }
+        if ( typeof a != 'object' || typeof b != 'object')
+            return false;
+        var length = aStack.length;
+        while (length--) {
+            if (aStack[length] == a)
+                return bStack[length] == b;
+        }
+        var aCtor = a.constructor, bCtor = b.constructor;
+        if (aCtor !== bCtor && !(_.isFunction(aCtor) && ( aCtor instanceof aCtor) && _.isFunction(bCtor) && ( bCtor instanceof bCtor)) && ('constructor' in a && 'constructor' in b)) {
+            return false;
+        }
+        aStack.push(a);
+        bStack.push(b);
+        var size = 0, result = true;
+        if (className == '[object Array]') {
+            size = a.length;
+            result = size == b.length;
+            if (result) {
+                while (size--) {
+                    if (!( result = eq(a[size], b[size], aStack, bStack)))
+                        break;
+                }
+            }
+        } else {
+            for (var key in a) {
+                if (a.hasOwnProperty(key)) {
+                    size++;
+                    if (!( result = b.hasOwnProperty(key) && eq(a[key], b[key], aStack, bStack)))
+                        break;
+                }
+            }
+            if (result) {
+                for (key in b) {
+                    if (b.hasOwnProperty(key) && !(size--))
+                        break;
+                }
+                result = !size;
+            }
+        }
+        aStack.pop();
+        bStack.pop();
+        return result;
+    };
+
     var AValidate = function(data, config, extra) {
         return AValidate.sync(data, config, extra);
     };
+
+    AValidate.equal = eq;
 
     AValidate.sync = function(data, config, extra) {
         var errors = null;
@@ -196,6 +264,9 @@
         if(data instanceof Promise) {
             return 'promise';
         }
+        if(data instanceof Array) {
+            return 'array';
+        }
         if(result == 'function') {
             if(typeof result.then == 'function') {
                 return 'promise';
@@ -217,7 +288,28 @@
     };
 
     AValidate._empty = function(data) {
-        return (AValidate._is(data, 'number') && isNaN(data)) || (data === null) || (data == undefined);
+        return (AValidate._is(data, 'number') && (isNaN(data) && !isFinite(data))) || (data === null) || (data == undefined);
+    };
+
+    AValidate._buildCondition = function(type, value) {
+        var condition = '';
+        switch(type) {
+            case 'boolean':;
+            case 'number':{
+                condition = 'opt.value == ' + value;
+            };break;
+            case 'array':{
+                condition = 'AValidate.equal(opt.value, ' + JSON.stringify(value) + ', [], [])';
+            };break;
+            case 'string':{
+                condition = 'opt.value == "' + value + '"';
+            };break;
+            case 'regexp':{
+                condition = value.toString() + '.test(opt.value)';
+            };break;
+        };
+
+        return condition;
     };
 
     AValidate._toFunction = function(key, cond) {
@@ -231,19 +323,7 @@
             return AValidate.rules[cond];
         }else {
             var build = function(type, value) {
-                var condition = '';
-                switch(type) {
-                    case 'boolean':;
-                    case 'number':{
-                        condition = 'opt.value == ' + value;
-                    };break;
-                    case 'string':{
-                        condition = 'opt.value == "' + value + '"';
-                    };break;
-                    case 'regexp':{
-                        condition = value.toString() + '.test(opt.value)';
-                    };break;
-                };
+                var condition = AValidate._buildCondition(type, value);
                 return AValidate._is(value, 'function') ? value : new Function("opt", 'return ' + condition);
             };
 
@@ -254,17 +334,7 @@
 
     AValidate._toPromise = function(key, cond) {
         var build = function(type, value) {
-            var condition = '';
-            switch(type) {
-                case 'boolean':;
-                case 'number':;
-                case 'string':{
-                    condition = 'opt.value == ' + value;
-                };break;
-                case 'regexp':{
-                    condition = value.toString() + '.test(opt.value)';
-                };break;
-            };
+            var condition = AValidate._buildCondition(type, value);
             if(AValidate._is(value, 'function')) {
                 value.__promise__ = true;
                 return value;
@@ -492,5 +562,6 @@
         }
     };
 
+    root.AValidate = AValidate;
     return AValidate;
 });
