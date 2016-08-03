@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+    <form id="form" action="#">
+        <fieldset>
+            <legend>账号信息</legend>
+            <label>账号名：<input type="text" name="username" /></label>
+            <label>手机号：<input type="text" name="phone" /></label>
+        </fieldset>
+        <fieldset>
+            <legend>密码信息</legend>
+            <label>密码：<input type="password" name="password" /></label>
+            <label>确认密码：<input type="password" name="repassword" /></label>
+        </fieldset>
+        <label><input type="checkbox" name="policy" />注册用户协议</label>
+        <input type="submit" value="注册" />
+    </form>
+</body>
+<script type="text/javascript" src="../validate.async.js"></script>
+<script type="text/javascript">
+    (function() {
+        var form = document.getElementById('form');
+        form.addEventListener('submit', function() {
+            var formData = new FormData(form);
+
+            AValidate.async({
+                username:{
+                    required:true,
+                    length:{max:16},
+                    symbols:/^[0-9a-zA-Z\-_]+$/
+                },
+                password:{
+                    required:true,
+                    length:{min:6,max:16},
+                    repeat:function(opt) {
+                        return opt.data.password == opt.data.repassword;
+                    }
+                },
+                phone:/^\d{11}$/,
+                policy:'on'
+            }, formData).then(function() {
+
+            }).catch(function(error) {
+                alert(JSON.stringify(error));
+            });
+            return false;
+        });
+    })();
+</script>
+</html>

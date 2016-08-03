@@ -63,54 +63,68 @@ d('#rules', function() {
         });
 
         d('#length', function() {
-            assert.deepEqual(A.sync({val:"abcde"}, {val:{length:5}}), null, 'use rule: length');
-            errors.forEach(function(value) {
-                assert.deepEqual(A.sync({val:value}, {val:{length:20}}), {val:['length']}, 'use rule: length with ' + value);
-                if(value != 0 && !isNaN(value)) {
-                    assert.deepEqual(A.sync({val:"abcde"}, {val:{length:value}}), null, 'use rule: length param with ' + value);
-                }
-            });
             it('direct', function() {
                 a(null, Validate({val:{length:5}}, {val:"abcde"}));
                 common.empty.forEach(function(value) {
-                    a({val:{length:'error'}}, )
+                    a({val:{length:'error'}}, Validate({val:{length:20}}, {val:value}));
+
+                    if(value != 0 && !isNaN(value)) {
+                        a(null, Validate({val:{length:value}}, {val:'abcde'}));
+                    }
                 });
             });
 
-            assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{is:5}}}), null, 'use rule: length is');
-            errors.forEach(function(value) {
-                assert.deepEqual(A.sync({val:value}, {val:{length:{is:20}}}), {val:['length']}, 'use rule: length is with ' + value);
-                if(value != 0 && !isNaN(value)) {
-                    assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{is:value}}}), null, 'use rule: length is param with ' + value);
-                }
-            });
-            assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{min:2}}}), null, 'use rule: length min');
-            assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{min:5}}}), null, 'use rule: length min');
-            errors.forEach(function(value) {
-                assert.deepEqual(A.sync({val:value}, {val:{length:{min:20}}}), {val:['length']}, 'use rule: length min with ' + value);
-                if(value != 0 && !isNaN(value)) {
-                    assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{min:value}}}), null, 'use rule: length min param with ' + value);
-                }
+            it('equal', function() {
+                a(null, Validate({val:{length:{is:5}}}, {val:"abcde"}));
+                common.empty.forEach(function(value) {
+                    a({val:{length:'error'}}, Validate({val:{length:{is:20}}}, {val:value}));
+
+                    if(value != 0 && !isNaN(value)) {
+                        a(null, Validate({val:{length:{is:value}}}, {val:'abcde'}));
+                    }
+                });
             });
 
-            assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{max:7}}}), null, 'use rule: length max');
-            assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{max:5}}}), null, 'use rule: length max');
-            errors.forEach(function(value) {
-                assert.deepEqual(A.sync({val:value}, {val:{length:{max:-1}}}), {val:['length']}, 'use rule: length max with ' + value);
-                if(value != 0 && !isNaN(value)) {
-                    assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{max:value}}}), null, 'use rule: length max param with ' + value);
-                }
+            it('min', function() {
+                a(null, Validate({val:{length:{min:2}}}, {val:"abcde"}));
+                a(null, Validate({val:{length:{min:5}}}, {val:"abcde"}));
+                common.empty.forEach(function(value) {
+                    a({val:{length:'error'}}, Validate({val:{length:{min:20}}}, {val:value}));
+
+                    if(value != 0 && !isNaN(value)) {
+                        a(null, Validate({val:{length:{min:value}}}, {val:'abcde'}));
+                    }
+                });
             });
 
-            assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{min:5, max:5}}}), null, 'use rule: length min and max');
-            errors.forEach(function(value) {
-                assert.deepEqual(A.sync({val:value}, {val:{length:{min:20, max:50}}}), {val:['length']}, 'use rule: length min and max with ' + value);
-                if(value != 0 && !isNaN(value)) {
-                    assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{min:value, max:-1}}}), null, 'use rule: length min and max param with ' + value);
-                    assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{min:20, max:value}}}), null, 'use rule: length min and max param with ' + value);
-                }
+            it('max', function() {
+                a(null, Validate({val:{length:{max:7}}}, {val:"abcde"}));
+                a(null, Validate({val:{length:{max:5}}}, {val:"abcde"}));
+                common.empty.forEach(function(value) {
+                    a({val:{length:'error'}}, Validate({val:{length:{max:-1}}}, {val:value}));
+
+                    if(value != 0 && !isNaN(value)) {
+                        a(null, Validate({val:{length:{max:value}}}, {val:'abcde'}));
+                    }
+                });
             });
-            assert.deepEqual(A.sync({val:"abcde"}, {val:{length:{is:5, min:7, max:10}}}), null, 'use rule: length is override min and max');
+
+            it('min and max', function() {
+                a(null, Validate({val:{length:{max:5, min:5}}}, {val:"abcde"}));
+                a({val:{length:'error'}}, Validate({val:{length:{min:20, max:50}}}, {val:"abcde"}));
+                common.empty.forEach(function(value) {
+                    a({val:{length:'error'}}, Validate({val:{length:{min:20, max:50}}}, {val:value}));
+
+                    if(value != 0 && !isNaN(value)) {
+                        a(null, Validate({val:{length:{min:value, max:-1}}}, {val:'abcde'}));
+                        a(null, Validate({val:{length:{min:20, max:value}}}, {val:'abcde'}));
+                    }
+                });
+            });
+
+            it('combine', function() {
+                a(null, Validate({val:{length:{min:7,max:10,is:5}}}, {val:'abcde'}));
+            });
         });
     });
 });

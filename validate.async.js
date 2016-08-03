@@ -1,18 +1,20 @@
 (function(root, factory) {
     if(typeof define === 'function' && define.amd) {
-        define(factory);
+        define(function() {
+            return factory(root);
+        });
     }
     else if(typeof exports === 'object') {
-        module.exports = factory();
+        module.exports = factory(root);
     }
     else {
-        root.AValidate = factory();
+        root.AValidate = factory(root);
     }
-})(this, function() {
+})(this, function(win) {
     "use strict";
 
     // polyfill
-    if(!("defer" in root.Promise)) {
+    if(!("defer" in Promise)) {
         Promise.defer = function() {
             return function() {
                 this.resolve = null;
@@ -33,7 +35,7 @@
         };
     }
 
-    if(!("whatever" in root.Promise)) {
+    if(!("whatever" in Promise)) {
         Promise.whatever = function(values, format) {
             var defer = Promise.defer();
             var len = values.length;
@@ -159,12 +161,14 @@
     AValidate.equal = eq;
 
     AValidate.sync = function(config, data, extra) {
+        data = AValidate._serialize(data);
+
         var errors = null;
         var funcs = AValidate._build(data, config, false);
 
         for(var i=0;i<funcs.length;i++) {
             var func = funcs[i];
-            var result = func.func.call(AValidate, {
+            var result = func.func.call(this, {
                 value:data[func.field],
                 param:func.param,
                 data:data
@@ -186,6 +190,8 @@
     };
 
     AValidate.async = function(config, data, extra) {
+        data = AValidate._serialize(data);
+
         var promises = [];
         var funcs = AValidate._build(data, config, true);
 
@@ -256,6 +262,28 @@
         return buildPromises;
     };
 
+    AValidate._serialize = function(data) {
+        if(typeof data == 'object' && (typeof window != 'undefined' && data instanceof window.FormData)) {
+            var result = {};
+            var entries = data.entries();
+            var item = null;
+            while(item = entries.next()) {
+                if(item) {
+                    if (item.done) {
+                        break;
+                    }else {
+                        result[item.value[0]] = item.value[1];
+                    }
+                }else {
+                    break;
+                }
+            }
+
+            return result;
+        }
+        return data;
+    };
+
     AValidate._type = function(data) {
         var result = (typeof data).toLowerCase();
 
@@ -298,7 +326,7 @@
                 condition = 'opt.value == ' + value;
             };break;
             case 'array':{
-                condition = 'AValidate.equal(opt.value, ' + JSON.stringify(value) + ', [], [])';
+                condition = 'this.equal(opt.value, ' + JSON.stringify(value) + ', [], [])';
             };break;
             case 'string':{
                 condition = 'opt.value == "' + value + '"';
@@ -358,7 +386,7 @@
 
     AValidate._build = function(data, config, isAsync) {
         var funcs = [];
-        for(var field in data) {
+        for(var field in config) {
             if(AValidate._is(config[field], 'object')) {
                 for(var cond in config[field]) {
                     funcs.push({
@@ -555,6 +583,5 @@
         }
     };
 
-    root.AValidate = AValidate;
     return AValidate;
 });

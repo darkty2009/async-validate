@@ -10,22 +10,36 @@ Async-Avalidte是一个支持同步与异步模式的验证框架，
 [license-url]: https://github.com/darkty2009/async-validate/blob/master/LICENSE
 [![MIT License][license-image]][license-url]
 
+## 安装
+
+Node使用:
+```
+npm install async-validate.js
+```
+
+浏览器使用:
+```
+<script type="text/javascript" src="validate.async.js"></script>
+```
+所有的代码都在```validate.async.js```文件里,
+当然，你也可以从这个[链接](http://5doe.com/custom/async-validate/validate.async-1.1.0.js)下载
+
 ##快速起步
 ```javascript
-AValidate({val:"abcdefg1"}, {
+AValidate({
     val:/^\w+$/
-});
+}, {val:"abcdefg1"});
 // console: {val:"error"}
-AValidate({val:"abcdefg1"}, {
+AValidate({
     val:{
         required:true,
         custom:/^\w+$/
     }
-});
+}, {val:"abcdefg1"});
 // console: {val:{custom:"error"}}
-AValidate({val:"abcdefg"}, {
+AValidate({
     val:/^\w+$/
-});
+}, {val:"abcdefg"});
 // console: null
 ```
 当验证成功时，方法会返回null。
@@ -33,23 +47,26 @@ AValidate({val:"abcdefg"}, {
 
 ##异步模式
 ```javascript
-AValidate.async({val:12001}, {
-    val:function(opt, resolve, reject) {
-        $.ajax({
-            url:"validate-user-id-exist",
-            data:{id:opt.value},
-            success:function() {
-                resolve();
-            },
-            error:function() {
-                reject("is-not-exist");
-            }
-        })
+AValidate.async({
+    val:{
+        required:true,
+        exist:function(opt, resolve, reject) {
+            $.ajax({
+                url:"validate-user-id-exist",
+                data:{id:opt.value},
+                success:function() {
+                    resolve();
+                },
+                error:function() {
+                    reject("is-not-exist");
+                }
+            })
+        }
     }
-}).then(function(message) {
+}, {val:12001}).then(function(message) {
     // console: message is null or undefined
-}, function(message) {
-    // console: {val:"is-not-exist"}
+}).catch(function(message) {
+    // console: {val:{exist:'is-not-exist'}}
 });
 ```
 ##默认的验证规则
