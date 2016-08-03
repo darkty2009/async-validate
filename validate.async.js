@@ -158,7 +158,7 @@
 
     AValidate.equal = eq;
 
-    AValidate.sync = function(data, config, extra) {
+    AValidate.sync = function(config, data, extra) {
         var errors = null;
         var funcs = AValidate._build(data, config, false);
 
@@ -185,7 +185,7 @@
         return errors;
     };
 
-    AValidate.async = function(data, config, extra) {
+    AValidate.async = function(config, data, extra) {
         var promises = [];
         var funcs = AValidate._build(data, config, true);
 

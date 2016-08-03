@@ -44,15 +44,15 @@ d('#sync direct equal', function() {
 
     d('#regexp', function() {
         it('regexp char', function() {
-            a(null, Validate({val:"abc"}, {val:/abc/}));
+            a(null, Validate({val:/abc/}, {val:"abc"}));
         });
         it('regexp number', function() {
-            a(null, Validate({val:9999}, {val:/\d{4}/}));
+            a(null, Validate({val:/\d{4}/}, {val:9999}));
         });
 
         common.empty.forEach(function(value) {
             it('regex ' + value, function() {
-                a({val:{error:'error'}}, Validate({val:value}, {val:/abc/}));
+                a({val:{error:'error'}}, Validate({val:/abc/}, {val:value}));
             });
         });
     });
