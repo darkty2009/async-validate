@@ -1,16 +1,26 @@
 (function(root, factory) {
+    var PromiseProto = null;
+    try {
+        PromiseProto = window.Promise;
+        for(var key in PromiseProto) {
+            break;
+        }
+    }catch(e) {
+        PromiseProto = Promise;
+    }
+
     if(typeof define === 'function' && define.amd) {
         define(function() {
-            return factory(root);
+            return factory(root, PromiseProto);
         });
     }
     else if(typeof exports === 'object') {
-        module.exports = factory(root);
+        module.exports = factory(root, PromiseProto);
     }
     else {
-        root.AValidate = factory(root);
+        root.AValidate = factory(root, PromiseProto);
     }
-})(this, function(win) {
+})(this, function(win, Promise) {
     "use strict";
 
     // polyfill
