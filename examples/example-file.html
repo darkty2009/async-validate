@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加商品</title>
+</head>
+<body>
+    <form id="form" action="#">
+        <fieldset>
+            <legend>基础信息</legend>
+            <label>SKU:<input type="text" name="sku" /></label>
+            <label>商品名称：<input type="text" name="name" /></label>
+            <label>商品分类：<input type="text" name="category" /></label>
+        </fieldset>
+        <fieldset>
+            <legend>详细描述</legend>
+            <label>规格：<input type="text" name="type" /></label>
+            <label>描述：<input type="text" name="detail" /></label>
+        </fieldset>
+        <fieldset>
+            <label>图片：<input type="file" name="image" /></label>
+        </fieldset>
+        <input type="submit" value="保存" />
+    </form>
+</body>
+<script type="text/javascript" src="../validate.async.js"></script>
+<script type="text/javascript">
+    (function() {
+        var form = document.getElementById('form');
+        form.onsubmit = function() {
+            var formData = new FormData(form);
+
+            AValidate.async({
+                sku:{
+                    required:true,
+                    exist:function(opt, resolve, reject) {
+                        // ajax
+                        setTimeout(resolve, 0);
+                    }
+                },
+                category:{
+                    required:true,
+                    length:{max:10}
+                },
+                type:{
+                    include:['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+                },
+                detail:{
+                    required:true,
+                    length:{max:200}
+                },
+                image:{
+                    size:function(opt, resolve, reject) {
+                        if(opt.value.size > 2 * 1024 * 1024) {
+                            reject();
+                        }else {
+                            resolve();
+                        }
+                    },
+                    rect:function(opt, resolve, reject) {
+                        var image = new Image();
+                        image.src = URL.createObjectURL(opt.value);
+                        image.onload = function() {
+                            if(this.width > 640) {
+                                reject('width');
+                            }
+                            else if(this.height > 640) {
+                                reject('height')
+                            }
+                            else
+                                resolve();
+                        };
+                        image.onerror = function() {
+                            reject();
+                        };
+                    },
+                    ext:function(opt, resolve, reject) {
+                        if(opt.value.name.match(/(\.png)|(\.jpg)$/)) {
+                            resolve();
+                        }else {
+                            reject(opt.value.name.substring(opt.value.name.lastIndexOf('.')));
+                        }
+                    }
+                }
+            }, formData).then(function() {
+                alert('success');
+            }).catch(function(error) {
+                alert(JSON.stringify(error));
+            });
+            return false;
+        };
+    })();
+</script>
+</html>

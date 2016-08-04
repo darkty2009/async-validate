@@ -24,7 +24,7 @@
 <script type="text/javascript">
     (function() {
         var form = document.getElementById('form');
-        form.addEventListener('submit', function() {
+        form.onsubmit = function() {
             var formData = new FormData(form);
 
             AValidate.async({
@@ -36,19 +36,23 @@
                 password:{
                     required:true,
                     length:{min:6,max:16},
-                    repeat:function(opt) {
-                        return opt.data.password == opt.data.repassword;
+                    repeat:function(opt, resolve, reject) {
+                        return opt.data.password == opt.data.repassword ? (
+                            resolve(),true
+                        ) : (
+                            reject(),false
+                        );
                     }
                 },
                 phone:/^\d{11}$/,
                 policy:'on'
             }, formData).then(function() {
-
+                alert('success');
             }).catch(function(error) {
                 alert(JSON.stringify(error));
             });
             return false;
-        });
+        };
     })();
 </script>
 </html>
