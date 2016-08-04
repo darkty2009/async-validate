@@ -1,6 +1,6 @@
 {
   "name": "async-validate.js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "transform all validator to async or promise",
   "main": "validate.async.js",
   "repository": {
