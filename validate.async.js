@@ -24,7 +24,7 @@
     "use strict";
 
     // polyfill
-    if(!("defer" in Promise)) {
+    if(!("defer" in Promise) || !Promise.defer) {
         Promise.defer = function() {
             return function() {
                 this.resolve = null;
