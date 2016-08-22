@@ -25,22 +25,20 @@
 
     // polyfill
     if(!("defer" in Promise) || !Promise.defer) {
+        Object.defineProperty(Promise, 'defer', {
+            writable:true
+        });
         Promise.defer = function() {
             return function() {
-                this.resolve = null;
-                this.reject = null;
-
-                var _this = this;
-                this.promise = new Promise(function(resolve, reject) {
-                    _this.resolve = resolve;
-                    _this.reject = reject;
+                var deferred = {}
+                deferred.promise = new Promise(function (resolve, reject) {
+                    deferred.resolve = resolve
+                    deferred.reject = reject
                 });
-
-                this.catch = function(e) {
-                    return _this.promise.catch(e);
+                deferred.catch = function(e) {
+                    return deferred.promise.catch(e);
                 };
-
-                return this;
+                return deferred;
             };
         };
     }
