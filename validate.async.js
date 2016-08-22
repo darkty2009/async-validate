@@ -29,17 +29,15 @@
             writable:true
         });
         Promise.defer = function() {
-            return function() {
-                var deferred = {}
-                deferred.promise = new Promise(function (resolve, reject) {
-                    deferred.resolve = resolve
-                    deferred.reject = reject
-                });
-                deferred.catch = function(e) {
-                    return deferred.promise.catch(e);
-                };
-                return deferred;
+            var deferred = {}
+            deferred.promise = new Promise(function (resolve, reject) {
+                deferred.resolve = resolve
+                deferred.reject = reject
+            });
+            deferred.catch = function(e) {
+                return deferred.promise.catch(e);
             };
+            return deferred;
         };
     }
 
