@@ -202,6 +202,7 @@
         var funcs = AValidate._build(data, config, true);
 
         var PROMISE_TEMPLATE = [
+            'var _this = this;',
             'setTimeout(function() {',
             '    var result = {{condition}};',
             '    if(result) {',
@@ -237,7 +238,7 @@
                         'reject',
                         PROMISE_TEMPLATE.replace(
                             "{{condition}}",
-                            "("+(func.cond in AValidate.rules ? "AValidate.rules." + func.cond : func.func.toString())+")(opt)"
+                            "("+(func.cond in AValidate.rules ? "_this.rules." + func.cond : func.func.toString())+")(opt)"
                         )
                     ).call(AValidate, {
                             value:data[func.field],
